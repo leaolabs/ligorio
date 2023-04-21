@@ -1,6 +1,8 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Ligorio
+
+## API Catalogo de produtos
+
+![image](https://user-images.githubusercontent.com/5832193/233716902-57736902-378a-4ede-a728-e5ce219bffb8.png)
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
@@ -25,6 +27,7 @@
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Homenagem a Santo Afonso de Ligorio
 
 ## Installation
 
@@ -35,7 +38,7 @@ $ docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql
 
 ## Running the app
 
-Firs create db `ligoriodb`
+First create db `ligoriodb`
 
 ```bash
 # development
@@ -67,9 +70,9 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Leonardo Cintra](https://github.com/leonardocintra)
+- Website - [API](https://github.com/leonardocintra)
+- Twitter - [@leonardoncintra](https://github.com/leonardocintra)
 
 ## License
 
