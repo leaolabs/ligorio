@@ -3,11 +3,13 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { VariationValues } from './variation-values.entity';
+import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Variation {

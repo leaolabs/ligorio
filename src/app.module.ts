@@ -9,6 +9,7 @@ import { Category } from './categories/entities/category.entity';
 import { VariationsModule } from './variations/variations.module';
 import { Variation } from './variations/entities/variation.entity';
 import { VariationValues } from './variations/entities/variation-values.entity';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { VariationValues } from './variations/entities/variation-values.entity';
     }),
     CategoriesModule,
     VariationsModule,
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
