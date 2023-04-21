@@ -5,6 +5,7 @@ import { CategoriesModule } from './categories/categories.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { Category } from './categories/entities/category.entity';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { DataSource } from 'typeorm';
           username: configService.get('DB_USERNAME'),
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_DATABASE'),
-          entities: [],
+          entities: [Category],
           synchronize: true,
         } as TypeOrmModuleAsyncOptions),
     }),

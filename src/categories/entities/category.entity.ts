@@ -1,30 +1,47 @@
-interface CategoryProps {
-  active: boolean;
-  name: string;
-  description: string;
-  slug: string;
-}
+import slugify from 'slugify';
+import {
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
+@Entity()
 export class Category {
-  private props: CategoryProps;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  get active() {
-    return this.props.active;
+  @Column({ default: true })
+  active: boolean;
+
+  @Column({ length: 50, nullable: false, unique: true })
+  name: string;
+
+  @Column({ length: 150, nullable: false })
+  description: string;
+
+  @Column({ length: 150, nullable: false, unique: true })
+  slug: string;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
+
+  @BeforeInsert()
+  setSlug() {
+    this.slug = slugify(this.name, {
+      lower: true,
+    });
   }
 
-  get name() {
-    return this.props.name;
-  }
-
-  get description() {
-    return this.props.active;
-  }
-
-  get slug() {
-    return this.props.slug;
-  }
-
-  constructor(props: CategoryProps) {
-    this.props = props;
+  constructor(category?: Partial<Category>) {
+    this.id = category?.id;
+    this.name = category?.name;
+    this.description = category?.description;
+    this.slug = category?.slug;
   }
 }
