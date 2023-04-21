@@ -25,6 +25,9 @@ export class Category {
   @Column({ length: 150, nullable: false, unique: true })
   slug: string;
 
+  @Column({ nullable: true })
+  parentId: number;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
@@ -43,5 +46,6 @@ export class Category {
     this.name = category?.name;
     this.description = category?.description;
     this.slug = category?.slug;
+    this.parentId = category?.parentId;
   }
 }

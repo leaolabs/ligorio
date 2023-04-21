@@ -6,6 +6,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Category } from './categories/entities/category.entity';
+import { VariationsModule } from './variations/variations.module';
+import { Variation } from './variations/entities/variation.entity';
+import { VariationValues } from './variations/entities/variation-values.entity';
 
 @Module({
   imports: [
@@ -21,11 +24,12 @@ import { Category } from './categories/entities/category.entity';
           username: configService.get('DB_USERNAME'),
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_DATABASE'),
-          entities: [Category],
+          entities: [Category, Variation, VariationValues],
           synchronize: true,
         } as TypeOrmModuleAsyncOptions),
     }),
     CategoriesModule,
+    VariationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
