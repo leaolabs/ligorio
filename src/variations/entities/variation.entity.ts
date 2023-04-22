@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -13,6 +14,8 @@ import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Variation {
+  // Variation: color, weight, etc...
+
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -30,6 +33,9 @@ export class Variation {
   )
   @JoinColumn()
   variationValues: VariationValues[];
+
+  @ManyToMany(() => Product, (product) => product.variations)
+  products: Product[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

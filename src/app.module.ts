@@ -7,9 +7,10 @@ import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Category } from './categories/entities/category.entity';
 import { VariationsModule } from './variations/variations.module';
-import { Variation } from './variations/entities/variation.entity';
 import { VariationValues } from './variations/entities/variation-values.entity';
 import { ProductsModule } from './products/products.module';
+import { Variation } from './variations/entities/variation.entity';
+import { Product } from './products/entities/product.entity';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { ProductsModule } from './products/products.module';
           username: configService.get('DB_USERNAME'),
           password: configService.get('DB_PASSWORD'),
           database: configService.get('DB_DATABASE'),
-          entities: [Category, Variation, VariationValues],
+          entities: [Category, Variation, VariationValues, Product],
           synchronize: true,
         } as TypeOrmModuleAsyncOptions),
     }),

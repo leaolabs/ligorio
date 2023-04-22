@@ -4,13 +4,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Variation } from '../../variations/entities/variation.entity';
 
 @Entity()
 export class Product {
-  @PrimaryGeneratedColumn('identity')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ default: true })
@@ -19,8 +22,15 @@ export class Product {
   @Column({ length: 60, nullable: false, unique: true })
   name: string;
 
+  @Column({ nullable: true })
+  description: string;
+
   @Column({ length: 100, nullable: false, unique: true })
   slug: string;
+
+  @ManyToMany(() => Variation, (variation) => variation.products)
+  @JoinTable()
+  variations: Variation[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
