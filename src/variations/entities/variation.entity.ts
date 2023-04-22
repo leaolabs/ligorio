@@ -4,7 +4,6 @@ import {
   Entity,
   JoinColumn,
   ManyToMany,
-  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -16,8 +15,8 @@ import { Product } from '../../products/entities/product.entity';
 export class Variation {
   // Variation: color, weight, etc...
 
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ nullable: false, length: 50 })
   name: string;

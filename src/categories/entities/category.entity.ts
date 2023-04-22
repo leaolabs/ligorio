@@ -4,14 +4,16 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Product } from '../../products/entities/product.entity';
 
 @Entity()
 export class Category {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ default: true })
   active: boolean;
@@ -27,6 +29,9 @@ export class Category {
 
   @Column({ nullable: true })
   parentId: number;
+
+  @ManyToMany(() => Product, (product) => product.categories)
+  products: Product[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -47,5 +52,6 @@ export class Category {
     this.description = category?.description;
     this.slug = category?.slug;
     this.parentId = category?.parentId;
+    this.products = category?.products;
   }
 }

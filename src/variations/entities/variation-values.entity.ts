@@ -10,8 +10,8 @@ import { Variation } from './variation.entity';
 
 @Entity()
 export class VariationValues {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({ nullable: false, length: 40 })
   name: string;

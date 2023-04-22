@@ -10,6 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { Variation } from '../../variations/entities/variation.entity';
+import { Category } from '../../categories/entities/category.entity';
 
 @Entity()
 export class Product {
@@ -28,9 +29,19 @@ export class Product {
   @Column({ length: 100, nullable: false, unique: true })
   slug: string;
 
-  @ManyToMany(() => Variation, (variation) => variation.products)
+  @ManyToMany(() => Variation, (variation) => variation.products, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
   @JoinTable()
   variations: Variation[];
+
+  @ManyToMany(() => Category, (category) => category.products, {
+    cascade: true,
+    onDelete: 'CASCADE',
+  })
+  @JoinTable()
+  categories: Category[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
@@ -43,5 +54,15 @@ export class Product {
     this.slug = slugify(this.name, {
       lower: true,
     });
+  }
+
+  constructor(product?: Partial<Product>) {
+    this.id = product?.id;
+    this.name = product?.name;
+    this.active = product?.active;
+    this.description = product?.description;
+    this.categories = product?.categories;
+    this.variations = product?.variations;
+    this.slug = product?.slug;
   }
 }

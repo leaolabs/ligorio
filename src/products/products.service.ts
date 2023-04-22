@@ -13,9 +13,10 @@ export class ProductsService {
   ) {}
 
   async create(createProductDto: CreateProductDto) {
-    return this.productRepository.save(
+    const productSaved = await this.productRepository.save(
       this.productRepository.create(createProductDto),
     );
+    return await this.getProductResult(productSaved.id);
   }
 
   findAll() {
@@ -32,5 +33,17 @@ export class ProductsService {
 
   remove(id: number) {
     return `This action removes a #${id} product`;
+  }
+
+  private async getProductResult(id: number) {
+    return await this.productRepository.findOne({
+      where: {
+        id,
+      },
+      relations: {
+        categories: true,
+        variations: true,
+      },
+    });
   }
 }
